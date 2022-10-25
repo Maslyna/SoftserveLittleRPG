@@ -14,7 +14,7 @@
     }
 
     @Override
-    void attackEnemy(Enemies.Enemy enemy) {
+    void attackEnemy(Game.Enemies.Enemy enemy) {
         System.out.println("Archer attack!");
     }
 }*/

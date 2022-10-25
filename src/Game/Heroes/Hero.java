@@ -1,14 +1,14 @@
-package Heroes;
+package Game.Heroes;
 
-import Enemies.Enemy;
+import Game.Enemies.Enemy;
+import Game.Mortal;
 
 public abstract class Hero implements Mortal {
-    float HP, KD, attack;
+    float HP, attack;
     public String name;
-    Hero(String name, float HP, float KD, float attack) {
+    Hero(String name, float HP, float attack) {
         this.name = name;
         this.HP = HP;
-        this.KD = KD;
         this.attack = attack;
     }
     public void takeDamage(float damage){
@@ -19,10 +19,7 @@ public abstract class Hero implements Mortal {
     public String getName() {
         return name;
     }
-    public void attackEnemy(Enemy enemy) {
-        System.out.println("Enemies.Enemy attacked!");
-    }
-
+    public abstract int attackEnemy(Enemy enemy);
     @Override
     public boolean isAlive() {
         return !(getHP() <= 0);

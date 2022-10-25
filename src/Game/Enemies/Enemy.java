@@ -1,18 +1,21 @@
-package Enemies;
-import Heroes.Hero;
+package Game.Enemies;
+import Game.Heroes.Hero;
+import Game.Mortal;
 public abstract class Enemy implements Mortal {
-    float HP, KD, attack;
 
-    public Enemy(float HP, float KD, float attack) {
+    String name;
+    float HP, attack;
+
+    public abstract void infoAboutEnemy();
+    public Enemy(String name, float HP, float attack) {
+        this.name = name;
         this.HP = HP;
-        this.KD = KD;
         this.attack = attack;
         System.out.println("Enemy created!");
     }
 
     public void takeDamage(float damage){
         setHP(HP -= damage);
-        System.out.println("Герой наносить: " + damage +  " HP damage");
         System.out.println("У ворога залишилось " + getHP() + " HP");
     }
 
