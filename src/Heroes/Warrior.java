@@ -4,12 +4,9 @@ import Enemies.Enemy;
 
 public class Warrior extends Hero {
 
-    float HP = 10;
-    float KD = 16;
-    float attack = 4;
 
-    public Warrior(String name) {
-        super(name);
+    public Warrior(String name, float HP , float KD, float attack) {
+        super(name, HP, KD, attack);
     }
     @Override
     public String getName() {
@@ -17,7 +14,7 @@ public class Warrior extends Hero {
     }
     @Override
     public void attackEnemy(Enemy enemy) {
-        enemy.HP -= attack;
+        enemy.takeDamage(attack);
         System.out.println("Герой наносить 4 очка урона!");
     }
 }
