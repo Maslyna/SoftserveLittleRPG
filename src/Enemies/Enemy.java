@@ -1,6 +1,5 @@
 package Enemies;
 import Heroes.Hero;
-
 public abstract class Enemy implements Mortal {
     float HP, KD, attack;
 
@@ -12,7 +11,17 @@ public abstract class Enemy implements Mortal {
     }
 
     public void takeDamage(float damage){
-        HP -= damage;
+        setHP(HP -= damage);
+        System.out.println("Герой наносить: " + damage +  " HP damage");
+        System.out.println("У ворога залишилось " + getHP() + " HP");
+    }
+
+    public void attackHero(Hero hero) {
+        System.out.println("Ворог атакує героя! ");
+        hero.takeDamage(attack);
+    }
+    public void setHP(float HP) {
+        this.HP = HP;
     }
 
     public float getHP() {
@@ -25,7 +34,7 @@ public abstract class Enemy implements Mortal {
             System.out.println("Enemy is dead");
             return false;
         }
-        System.out.println("У ворога залишилося " + HP + " HP");
         return true;
     }
+
 }

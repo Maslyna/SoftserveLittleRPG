@@ -7,9 +7,25 @@ import java.util.*;
 
 public class BattleGround {
 
-    public static boolean HeroAttack(Hero hero, Enemy enemy) {
+    public static void HeroAttack(Hero hero, Enemy enemy) {
         hero.attackEnemy(enemy);
-        return !enemy.isAlive();
+    }
+
+    public static void EnemyAttack(Hero hero, Enemy enemy) {
+        enemy.attackHero(hero);
+    }
+
+    public static void getInterface() {
+        System.out.println("""
+                
+                [1] - Атакувати ворога \t[2] - Інформація про героя
+                [0] - Вихід
+                ..."""
+
+        );
+    }
+    public static void getInfo(Hero hero){
+        hero.infoAboutHero();
     }
 
     public static void main(String[] args) {
@@ -19,18 +35,26 @@ public class BattleGround {
         Enemy enemy = new Zombie();
 
         int control;
-        while (true) {
+        while (hero.isAlive()) {
+            getInterface();
             control = scan.nextInt();
+
             if (control == 1){
-                if (HeroAttack(hero, enemy)) {
-                    enemy = null;
+                HeroAttack(hero, enemy);
+                if (!enemy.isAlive())
                     break;
-                }
-            }
-            else if (control == 0){
+                EnemyAttack(hero, enemy);
+            } else if (control == 2) {
+                getInfo(hero);
+            } else if (control == 0) {
                 break;
             }
 
+        }
+        if (hero.isAlive()) {
+            System.out.println("Перемога!");
+        } else {
+            System.out.println("Герой помер...");
         }
 
     }
