@@ -1,20 +1,25 @@
-/*package Game.Events;
+package Game;
 
+import Game.Actions.AttackAction;
+import Game.Actions.checkIsAttackCanDamage;
 import Game.Actions.checkIsEnemyAlive;
 import Game.Actions.getEnemyNumber;
 import Game.Enemies.Enemy;
+import Game.Enemies.Zombie;
 import Game.Heroes.Hero;
+import Game.Heroes.Warrior;
 import Game.Interface.Interface;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BattleEvents implements Interface {
+public class TrainingGround {
 
-    public static void Game(Hero hero, ArrayList<Enemy> enemyArrayList) {
+    public static void Training(Hero hero, ArrayList<Enemy> enemyArrayList){
         Scanner scan = new Scanner(System.in);
         int control;
         int numberOfEnemy;
-        Enemy enemy = null;
+        Enemy enemy = enemyArrayList.get(0);
         while (hero.isAlive()) {
             if (enemyArrayList.isEmpty()){
                 System.out.println("Перемога!");
@@ -22,7 +27,7 @@ public class BattleEvents implements Interface {
             }
             Interface.getInterface();
             control = scan.nextInt();
-            if (enemy == null || control == 4){
+            if (enemy == null || control == 4) {
                 System.out.println("Оберіть супротивника від 1 до " + enemyArrayList.size() + "\n");
                 numberOfEnemy = scan.nextInt() - 1;
                 if (numberOfEnemy < 0 || numberOfEnemy >= enemyArrayList.size()) {
@@ -32,17 +37,11 @@ public class BattleEvents implements Interface {
                     enemy = getEnemyNumber.number(enemyArrayList, numberOfEnemy);
                 }
             }
-
             if (control == 1) {
-                if (HeroAttackAction.HeroAttack(hero, enemy) != 0) {
+                AttackAction.HeroAttack(hero, enemy);
+                checkIsEnemyAlive.checkIsEAlive(enemyArrayList);
+                AttackAction.EnemyAttack(hero, enemyArrayList);
 
-                    if (!enemy.isAlive()){
-                        checkIsEnemyAlive.checkIsEAlive(enemyArrayList);
-                        continue;
-                    }
-
-                    EnemyAttackActions.EnemyAttack(hero, enemyArrayList);
-                }
             } else if (control == 2) {
                 Interface.getInfo(hero);
             } else if (control == 3) {
@@ -59,7 +58,15 @@ public class BattleEvents implements Interface {
             System.out.println("Вихід");
         }
         scan.close();
+}
+
+    public static void main(String[] args) {
+        Hero hero = new Warrior("Warrior", "Alpha", 20, 4, 0, 20);
+        ArrayList<Enemy> enemyArrayList = new ArrayList<>();
+        Enemy zombie1 = new Zombie();
+        Enemy zombie2 = new Zombie();
+        enemyArrayList.add(zombie1);
+        enemyArrayList.add(zombie2);
+        Training(hero, enemyArrayList);
     }
-
-
-}*/
+}

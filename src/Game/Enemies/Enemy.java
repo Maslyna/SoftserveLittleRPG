@@ -4,59 +4,31 @@ import Game.Mortal;
 
 public abstract class Enemy implements Mortal {
 
-
     String name;
-    float HP;
-    float attack;
+    double HP;
+    double attack;
     int KD;
 
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
 
-    public void setAttack(float attack) {
-        this.attack = attack;
-    }
-
-    public float getAttack() {
-        return attack;
-    }
+    public abstract double getAttack();
 
     public abstract void infoAboutEnemy();
-    public Enemy(String name, float HP, float attack) {
+
+    public Enemy(String name, double HP, double attack, int KD) {
         this.name = name;
         this.HP = HP;
         this.attack = attack;
+        this.KD = KD;
     }
 
-    public void takeDamage(float damage){
-        setHP(HP -= damage);
-        System.out.println("У ворога залишилось " + getHP() + " HP");
-    }
+    public abstract void takeDamage(double damage);
 
-    public void attackHero(Hero hero) {
-        System.out.println("Ворог " + getName() + "героя! ");
+    public abstract void attackHero(Hero hero);
 
-    }
+    public abstract void setHP(double HP);
 
-    public void setHP(float HP) {
-        this.HP = HP;
-    }
+    public abstract double getHP();
 
-    public float getHP() {
-        return HP;
-    }
-
-    @Override
-    public boolean isAlive() {
-        if (HP <= 0) {
-            System.out.println("Enemy is dead");
-            return false;
-        }
-        return true;
-    }
-
-    public int getKD() {
-        return KD;
-    }
+    public abstract int getKD();
 }

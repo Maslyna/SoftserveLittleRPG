@@ -1,8 +1,8 @@
-package Game;
+/*package Game;
 
 import Game.Enemies.Enemy;
 import Game.Enemies.Zombie;
-import Game.Events.BattleEvents;
+
 import Game.Heroes.Archer;
 import Game.Heroes.Hero;
 import Game.Heroes.Warrior;
@@ -44,4 +44,4 @@ public class BattleGround extends BattleEvents {
         scanner.close();
     }
 
-}
+}*/

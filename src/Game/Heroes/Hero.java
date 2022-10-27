@@ -6,51 +6,42 @@ import Game.Mortal;
 public abstract class Hero implements Mortal {
     String name;
     String ClassName;
-    double HP, attack;
-    String [] spellBookNames;
-    int [] spellBookNumbers;//TODO
+    double HP;
+    double attack;
+    double mana;
     int KD;
 
-    public String getClassName() {
-        return ClassName;
-    }
-
-    Hero(String ClassName, String name, double HP, double attack) {
+    Hero(String ClassName, String name, double HP, double attack, double mana, int KD) {
         this.ClassName = ClassName;
         this.name = name;
         this.HP = HP;
         this.attack = attack;
+        this.mana = mana;
+        this.KD = KD;
     }
 
-    public void takeDamage(double damage){
-        setHP(getHP() - damage);
-        System.out.println("Ворог наносить: " + damage + " HP damage");
-        System.out.println("У героя залишилось: " + getHP() + " HP");
-    }
+    abstract public String getClassName();
 
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
+
+    public abstract void takeDamage(double damage);
 
     public abstract int attackEnemy(Enemy enemy);
 
-    @Override
-    public boolean isAlive() {
-        return !(getHP() <= 0);
-    }
-
     public abstract void infoAboutHero();
 
-    public double getHP() {
-        return HP;
-    }
+    public abstract void setHP(double HP);
 
-    public void setHP(double HP) {
-        this.HP = HP;
-    }
+    public abstract void setMana(double mana);
 
-    public int getKD(){
-        return KD;
-    }
+    public abstract int getKD();
+
+    public abstract double getMana();
+
+    public abstract double getHP();
+
+    public abstract double getAttack();
+
+    public abstract void getSpellName();
 
 }

@@ -1,4 +1,4 @@
-package Game.Heroes;
+/*package Game.Heroes;
 
 import Game.Enemies.Enemy;
 import Game.Interface.Interface;
@@ -6,7 +6,7 @@ import Game.Interface.Interface;
 import java.util.Scanner;
 
 public class Archer extends Hero {
-/*public void setRatFactor(float ratFactor) {
+public void setRatFactor(float ratFactor) {
         this.ratFactor = ratFactor;
     }
 
@@ -61,5 +61,5 @@ public class Archer extends Hero {
                 "\nКлас: " + getClassName() +
                 "\nКількість HP: " + getHP() + " HP" +
                 "\nКількість адреналіну: " + getRatFactor() + " AP");
- */
-}
+
+}*/

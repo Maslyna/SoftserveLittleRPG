@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class AttackAction {
     public static void HeroAttack(Hero hero, Enemy enemy) {
-
         if (checkIsAttackCanDamage.checkIfHeroCanDamage(enemy))
             hero.attackEnemy(enemy);
         else
@@ -17,6 +16,8 @@ public class AttackAction {
         for (Enemy i : enemyArrayList){
             if (checkIsAttackCanDamage.checkIfEnemyCanDamage(hero))
                 i.attackHero(hero);
+            else
+                System.out.println(i.getName() + " промахнувся!");
         }//TODO
     }
 }

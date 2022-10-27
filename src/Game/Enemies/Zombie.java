@@ -6,38 +6,68 @@ import Game.Heroes.Hero;
 import java.util.Random;
 
 public class Zombie extends Enemy {
-    float maxHP = 5;
+
+    static Random random = new Random();
+
+    public Zombie(double HP, double attack, int KD) {
+        super("Zombie", HP, attack, KD);
+    }
 
     public Zombie() {
-        super("Zombie", 5, 1);
+        super("Zombie", 5, 1, 8);
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Overridex
+    public double getAttack() {
+        return attack;
     }
 
     @Override
     public void infoAboutEnemy() {
-        System.out.println("Ім'я: " + name + "\nКількість HP: " + getHP() + "\nАтака: " + attack + "\n");
+        System.out.println("Ім'я: " + getName() + "\nHP: " + getHP() + "\nAttack: " + getAttack() + "\nKD: " + KD);
+    }
+
+    @Override
+    public void takeDamage(double damage) {
+        setHP(getHP() - damage);
     }
 
     @Override
     public void attackHero(Hero hero) {
-        super.attackHero(hero);
+        System.out.println(getName() + "атакує героя на " + getAttack() + " HP damage");
+        hero.takeDamage(getAttack());
+    }
+
+    @Override
+    public void setHP(double HP) {
+        this.HP = HP;
+    }
+
+    @Override
+    public double getHP() {
+        return HP;
+    }
+
+    @Override
+    public int getKD() {
+        return KD;
+    }
+
+    private boolean zombieAlive() {
+        if (getHP() <= 0) {
+            return random.nextInt(21) >= 15;
+        } else {
+            return true;
+        }
     }
 
     @Override
     public boolean isAlive() {
-        Random random = new Random();
-        if (HP <= 0) {
-            System.out.println("Enemy is dead");
-            if (random.nextInt(20 + 1) <= 15) {
-                return false;
-            } else {
-                System.out.println("Enemy rice up!");
-                HP = maxHP / 2;
-                System.out.println("У ворога залишилося " + getHP() + " HP");
-                return true;
-            }
-
-        }
-        else
-            return true;
+        return zombieAlive();
     }
 }
