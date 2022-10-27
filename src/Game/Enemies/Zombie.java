@@ -6,15 +6,15 @@ import Game.Heroes.Hero;
 import java.util.Random;
 
 public class Zombie extends Enemy {
-    float maxHP = 10;
+    float maxHP = 5;
 
     public Zombie() {
-        super("Zombie",10, 2);
+        super("Zombie", 5, 1);
     }
 
     @Override
     public void infoAboutEnemy() {
-        System.out.println("Ім'я: " + name + "\nКількість HP: " + getHP() + "\nАтака: " + attack);
+        System.out.println("Ім'я: " + name + "\nКількість HP: " + getHP() + "\nАтака: " + attack + "\n");
     }
 
     @Override

@@ -1,46 +1,67 @@
 package Game.Events;
 
+import Game.Actions.AttackAction;
+import Game.Actions.checkIsEnemyAlive;
 import Game.Enemies.Enemy;
 import Game.Heroes.Hero;
-import Game.Interface;
+import Game.Interface.Interface;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BattleEvents extends Interface {
+public class BattleEvents implements Interface {
 
-    public static void Game(Hero hero, Enemy enemy) {
+
+
+    public static void Game(Hero hero, ArrayList<Enemy> enemyArrayList) {
         Scanner scan = new Scanner(System.in);
         int control;
+        int numberOfEnemy;
+        Enemy enemy = null;
         while (hero.isAlive()) {
-            getInterface();
+            if (enemyArrayList.isEmpty()){
+                System.out.println("Перемога!");
+                break;
+            }
+            Interface.getInterface();
             control = scan.nextInt();
+            if (enemy == null || control == 4){
+                System.out.println("Оберіть супротивника від 1 до " + enemyArrayList.size() + "\n");
+                numberOfEnemy = scan.nextInt() - 1;
+                if (numberOfEnemy < 0 || numberOfEnemy >= enemyArrayList.size()) {
+                    System.out.println("Немає ворога за цим номером");
+                    continue;
+                } else {
+                    enemy = getEnemyNumber.number(enemyArrayList, numberOfEnemy);
+                }
+            }
 
             if (control == 1) {
-                if (HeroAttack(hero, enemy) != 0) {
-                    if (!enemy.isAlive())
-                        break;
-                    EnemyAttack(hero, enemy);
-                }
+                if (HeroAttackAction.HeroAttack(hero, enemy) != 0) {
 
+                    if (!enemy.isAlive()){
+                        checkIsEnemyAlive.checkIsEAlive(enemyArrayList);
+                        continue;
+                    }
+
+                    EnemyAttackActions.EnemyAttack(hero, enemyArrayList);
+                }
             } else if (control == 2) {
-                getInfo(hero);
+                Interface.getInfo(hero);
             } else if (control == 3) {
-                getInfo(enemy);
+                for (Enemy i : enemyArrayList)
+                    Interface.getInfo(i);
             } else if (control == 0) {
                 break;
             }
         }
 
-    }
-
-    public static void Result(Hero hero, Enemy enemy){
-        if (hero.isAlive() && !enemy.isAlive()) {
-            System.out.println("Перемога!");
-        } else if (!hero.isAlive()) {
+        if (!hero.isAlive()) {
             System.out.println("Поразка...");
         } else {
             System.out.println("Вихід");
         }
+        scan.close();
     }
 
 
