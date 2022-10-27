@@ -20,28 +20,51 @@ public abstract class Hero implements Mortal {
         this.KD = KD;
     }
 
-    abstract public String getClassName();
+    public String getClassName() {
+        return ClassName;
+    }
 
-    public abstract String getName();
+    public String getName() {
+        return name;
+    }
 
     public abstract void takeDamage(double damage);
 
     public abstract int attackEnemy(Enemy enemy);
 
-    public abstract void infoAboutHero();
+    public void infoAboutHero() {
+        System.out.println("Класс: " + getClassName() +"\nІм'я: " + getName() +
+                "\nHP: " + getHP() + " MP: " + getMana() + "\nAttack: " + getAttack() + "\nKD: " + KD);
+    }
 
-    public abstract void setHP(double HP);
+    public void setHP(double HP) {
+        this.HP = HP;
+    }
 
-    public abstract void setMana(double mana);
+    public void setMana(double mana) {
+        this.mana = mana;
+    }
 
-    public abstract int getKD();
+    public int getKD() {
+        return KD;
+    }
 
-    public abstract double getMana();
+    public double getMana() {
+        return mana;
+    }
 
-    public abstract double getHP();
+    public double getHP() {
+        return HP;
+    }
 
-    public abstract double getAttack();
+    public double getAttack() {
+        return attack;
+    }
 
     public abstract void getSpellName();
 
+    @Override
+    public boolean isAlive() {
+        return !(HP <= 0);
+    }
 }

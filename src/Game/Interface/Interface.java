@@ -19,24 +19,6 @@ public interface Interface {
     }
     static void getInfo(Enemy enemy){ enemy.infoAboutEnemy();}
 
-    static void getWarriorListAttack() {
-        System.out.println("Оберіть тип атаки: \n" + """
-                    [1] - Звичайна   [2] - Сильна (2 RP)
-                    [0] - Вихід
-                    Enter:""");
-    }
-
-    static void getArcherListAttack() {
-        System.out.println("Оберіть тип атаки: \n" + """
-                    [1] - Звичайна   [2] - АТАКА ПОСЛАБЛЕННЯ
-                    [0] - Вихід
-                    Enter:""");
-    }
-
-    static void getMAgeListAttack() {
-
-    }
-
     static void getStartScreen(){
         System.out.println("""
                                  Який клас ви хочете обрати?

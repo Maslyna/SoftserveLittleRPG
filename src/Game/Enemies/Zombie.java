@@ -22,7 +22,7 @@ public class Zombie extends Enemy {
         return name;
     }
 
-    @Overridex
+    @Override
     public double getAttack() {
         return attack;
     }
@@ -39,7 +39,7 @@ public class Zombie extends Enemy {
 
     @Override
     public void attackHero(Hero hero) {
-        System.out.println(getName() + "атакує героя на " + getAttack() + " HP damage");
+        System.out.println(getName() + " атакує героя на " + getAttack() + " HP шкоди");
         hero.takeDamage(getAttack());
     }
 

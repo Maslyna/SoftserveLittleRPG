@@ -17,16 +17,6 @@ public class Warrior extends Hero {
     }
 
     @Override
-    public String getClassName() {
-        return ClassName;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public void takeDamage(double damage) {
         setHP(getHP() - damage);
         setMana(getMana() + damage / 2);
@@ -42,6 +32,8 @@ public class Warrior extends Hero {
 
             if (chose == 1){
                 System.out.println("Герой наносить: " + attack + " HP damage");
+                setMana(getMana() + getAttack() / 2);
+                System.out.println("Кількість мани зростає до " + getMana());
                 enemy.takeDamage(attack);
                 break;
             } else if (chose == 2) {
@@ -59,6 +51,7 @@ public class Warrior extends Hero {
                     enemy.takeDamage((attack * 2));
                     setMana(getMana() - 2);
                     setHP(getHP() - 1);
+                    break;
                 } else {
                     System.out.println("Недостатньо HP або MP");
                 }
@@ -70,51 +63,12 @@ public class Warrior extends Hero {
     }
 
     @Override
-    public void infoAboutHero() {
-        System.out.println("Ім'я: " + getName() + "\nHP: " + getHP() + " MP: " + getMana() + "\nAttack: " + getAttack() + "\nKD: " + KD);
-    }
-
-    @Override
-    public double getHP() {
-        return HP;
-    }
-
-    @Override
-    public void setHP(double HP) {
-        this.HP = HP;
-    }
-
-    @Override
-    public void setMana(double mana) {
-        this.mana = mana;
-    }
-
-    @Override
-    public int getKD() {
-        return KD;
-    }
-
-    @Override
-    public double getMana() {
-        return mana;
-    }
-
-    @Override
-    public double getAttack() {
-        return attack;
-    }
-
-    @Override
     public void getSpellName() {
         System.out.println("Навички Воїна: ");
-        for (int i = 0; i < spellName.length; i++){
-            System.out.println(spellName[i]);
+        for (String s : spellName) {
+            System.out.println(s);
         }
         System.out.println("[0] - Exit");
     }
 
-    @Override
-    public boolean isAlive() {
-        return !(HP <= 0);
-    }
 }
