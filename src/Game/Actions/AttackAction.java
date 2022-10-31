@@ -15,9 +15,9 @@ public class AttackAction {
         return random.nextInt(21) >= enemy.getKD();
     }
 
-    public static void HeroAttack(Hero hero, Enemy enemy) {
+    public static void HeroAttack(Hero hero, Enemy enemy, ArrayList<Enemy> enemyArrayList) {
         if (checkIfHeroCanDamage(enemy))
-            hero.attackEnemy(enemy);
+            hero.attackEnemy(enemyArrayList, enemy);
         else
             System.out.println("Герой промахнувся!");
     }
@@ -28,7 +28,7 @@ public class AttackAction {
                     i.attackHero(hero);
                 else
                     System.out.println(i.getName() + " промахнувся!");
-            }//TODO
+            }
         }
 
     }

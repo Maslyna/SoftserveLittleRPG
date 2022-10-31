@@ -1,20 +1,35 @@
-/*package Game.Events;
+package Game.Events;
 
-import Game.Actions.checkIsEnemyAlive;
-import Game.Actions.getEnemyNumber;
-import Game.Enemies.Enemy;
-import Game.Heroes.Hero;
+import Game.Actions.*;
+import Game.Enemies.*;
+import Game.Heroes.*;
 import Game.Interface.Interface;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class BattleEvents implements Interface {
 
-    public static void Game(Hero hero, ArrayList<Enemy> enemyArrayList) {
-        Scanner scan = new Scanner(System.in);
-        int control;
-        int numberOfEnemy;
-        Enemy enemy = null;
+    static Scanner scan = new Scanner(System.in);
+    static int control;
+    static Random random = new Random();
+
+    public static boolean getTypeOfRoom() {
+        int rand = random.nextInt(10);
+        return rand % 2 == 0;
+    }
+
+    public static boolean getRoom(Hero hero, ArrayList<Enemy> enemyArrayList) {
+        if (getTypeOfRoom()){
+            restRoom(hero);
+            return true;
+        } else {
+            return fightRoom(hero, enemyArrayList);
+        }
+    }
+
+    public static boolean Battle(Hero hero, ArrayList<Enemy> enemyArrayList){
+        Enemy enemy = enemyArrayList.get(0);
         while (hero.isAlive()) {
             if (enemyArrayList.isEmpty()){
                 System.out.println("Перемога!");
@@ -22,27 +37,15 @@ public class BattleEvents implements Interface {
             }
             Interface.getInterface();
             control = scan.nextInt();
-            if (enemy == null || control == 4){
-                System.out.println("Оберіть супротивника від 1 до " + enemyArrayList.size() + "\n");
-                numberOfEnemy = scan.nextInt() - 1;
-                if (numberOfEnemy < 0 || numberOfEnemy >= enemyArrayList.size()) {
-                    System.out.println("Немає ворога за цим номером");
-                    continue;
-                } else {
-                    enemy = getEnemyNumber.number(enemyArrayList, numberOfEnemy);
-                }
+            if (enemy == null || control == 4) {
+                enemy = choseEnemyFromArray.takeEnemyFromArray(enemyArrayList, enemy);
             }
-
             if (control == 1) {
-                if (HeroAttackAction.HeroAttack(hero, enemy) != 0) {
-
-                    if (!enemy.isAlive()){
-                        checkIsEnemyAlive.checkIsEAlive(enemyArrayList);
-                        continue;
-                    }
-
-                    EnemyAttackActions.EnemyAttack(hero, enemyArrayList);
+                AttackAction.HeroAttack(hero, enemy, enemyArrayList);
+                if (!checkIsEnemyAlive.checkIsEAlive(enemyArrayList) && !enemyArrayList.isEmpty()){
+                    enemy = choseEnemyFromArray.takeEnemyFromArray(enemyArrayList, enemy);
                 }
+                AttackAction.EnemyAttack(hero, enemyArrayList);
             } else if (control == 2) {
                 Interface.getInfo(hero);
             } else if (control == 3) {
@@ -52,14 +55,52 @@ public class BattleEvents implements Interface {
                 break;
             }
         }
-
-        if (!hero.isAlive()) {
-            System.out.println("Поразка...");
-        } else {
-            System.out.println("Вихід");
-        }
-        scan.close();
+        return hero.isAlive();
     }
 
+    public static boolean fightRoom(Hero hero, ArrayList<Enemy> enemyArrayList) {
+        System.out.println("Герой наткнувся на комнату з ");
+        enemyArrayList = generatorOfEnemies(enemyArrayList);
+        return Battle(hero, enemyArrayList);
+    }
 
-}*/
+    public static ArrayList<Enemy> generatorOfEnemies(ArrayList<Enemy> enemyArrayList){
+        int randInt = random.nextInt(4) + 1;
+        System.out.print((randInt) + " ворогами");
+        for (;randInt > 0; randInt--) {
+            int numberOfEnemy = random.nextInt(4);
+            if (numberOfEnemy == 1) {
+                Enemy enemy = new Zombie();
+                enemyArrayList.add(enemy);
+            } else if (numberOfEnemy == 2) {
+                Enemy enemy = new Bat();
+                enemyArrayList.add(enemy);
+            } else {
+                Enemy enemy = new Slime();
+                enemyArrayList.add(enemy);
+            }
+        }
+        return enemyArrayList;
+    }
+
+    public static void restRoom(Hero hero){
+        System.out.println("Йдучи уперед " + hero.getName() + " побачив кімнату, у якій немає ворогів, тут можна трохи відпочити.");
+        Interface.getRestRoomInterface();
+        while (true){
+            control = scan.nextInt();
+            if (control == 1) {
+                restAction.rest(hero);
+                break;
+            } else if (control == 2){
+                Interface.getInfo(hero);
+                break;
+            } else if (control == 0){
+                System.out.println("Вихід");
+                break;
+            } else {
+                System.out.println("Немає такого вибору");
+            }
+        }
+    }
+
+}

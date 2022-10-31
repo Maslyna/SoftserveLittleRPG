@@ -3,16 +3,16 @@ package Game;
 import Game.Actions.*;
 import Game.Enemies.*;
 import Game.Heroes.*;
+import Game.Events.BattleEvents;
 import Game.Interface.Interface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TrainingGround {
+public class TrainingGround implements Interface {
 
     static Scanner scan = new Scanner(System.in);
     static int control;
-    static int numberOfEnemy;
 
     public static void Training(Hero hero, ArrayList<Enemy> enemyArrayList){
 
@@ -28,7 +28,7 @@ public class TrainingGround {
                 enemy = choseEnemyFromArray.takeEnemyFromArray(enemyArrayList, enemy);
             }
             if (control == 1) {
-                AttackAction.HeroAttack(hero, enemy);
+                AttackAction.HeroAttack(hero, enemy, enemyArrayList);
                 if (!checkIsEnemyAlive.checkIsEAlive(enemyArrayList) && !enemyArrayList.isEmpty()){
                     enemy = choseEnemyFromArray.takeEnemyFromArray(enemyArrayList, enemy);
                 }
@@ -52,12 +52,16 @@ public class TrainingGround {
 }
 
     public static void main(String[] args) {
-        Hero hero = new Warrior("Warrior", "Alpha", 20, 4, 0, 10);
-        ArrayList<Enemy> enemyArrayList = new ArrayList<>();
-        Enemy zombie1 = new Zombie();
-        Enemy zombie2 = new Zombie();
-        enemyArrayList.add(zombie1);
-        enemyArrayList.add(zombie2);
-        Training(hero, enemyArrayList);
+        //Hero hero = new Archer("Archer", "Alpha", 10, 2, 5, 10);
+        //Hero hero = new Mage("Mage", "Alpha", 10, 5, 5, 10);
+        //Hero hero = new Warrior("Warrior", "Alpha", 10, 2, 10, 10);
+        //ArrayList<Enemy> enemyArrayList = new ArrayList<Enemy>();
+        //enemyArrayList = BattleEvents.generatorOfEnemies(enemyArrayList);
+        //System.out.println("Size of array list " + enemyArrayList.size());
+        //Enemy zombie1 = new Zombie();
+        //Enemy zombie2 = new Zombie();
+        //enemyArrayList.add(zombie1);
+        //enemyArrayList.add(zombie2);
+        //Training(hero, enemyArrayList);
     }
 }

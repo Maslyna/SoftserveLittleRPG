@@ -19,6 +19,17 @@ public interface Interface {
     }
     static void getInfo(Enemy enemy){ enemy.infoAboutEnemy();}
 
+    static void getRestRoomInterface(){
+
+        System.out.println("""
+                [1] - Відпочити
+                [2] - Інформація про героя
+                [0] - Exit
+                
+                """);
+
+    }
+
     static void getStartScreen(){
         System.out.println("""
                                  Який клас ви хочете обрати?
