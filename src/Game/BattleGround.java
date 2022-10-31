@@ -39,7 +39,7 @@ public class BattleGround extends BattleEvents {
                 System.out.println("Ви обрали мага...");
                 System.out.println("Оберіть ім'я: \n");
                 String name = scanner.next();
-                hero = new Mage("Mage", name, 15, 3, 10, 15);
+                hero = new Mage("Mage", name, 10, 5, 20, 10);
                 break;
             }
         }
