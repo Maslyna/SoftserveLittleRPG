@@ -40,7 +40,7 @@ public abstract class Hero implements Mortal {
 
     public void infoAboutHero() {
         System.out.println("Класс: " + getClassName() +"\nІм'я: " + getName() +
-                "\nHP: " + getHP() + " MP: " + getMana() + "\nAttack: " + getAttack() + "\nKD: " + KD);
+                "\nHP: " + getHP() + "/" + maxHP + "\nMP: " + getMana() + "/" + maxMana + "\nAttack: " + getAttack() + "\nKD: " + KD);
     }
 
     public void setHP(double HP) {

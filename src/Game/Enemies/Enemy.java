@@ -18,7 +18,7 @@ public abstract class Enemy implements Mortal {
     }
 
     public void infoAboutEnemy() {
-        System.out.println("Ім'я: " + getName() + "\nHP: " + getHP() + "\nAttack: " + getAttack() + "\nKD: " + KD);
+        System.out.println("Ім'я: " + getName() + "\nHP: " + getHP() + "/" + maxHP + "\nAttack: " + getAttack() + "\nKD: " + KD + "\n");
     }
 
     public Enemy(String name, double HP, double attack, int KD) {
@@ -39,7 +39,7 @@ public abstract class Enemy implements Mortal {
         hero.takeDamage(getAttack());
     }
 
-    public void setHP(double HP){
+    public void setHP(double HP) {
         this.HP = Math.min(HP, maxHP);
     }
 

@@ -28,7 +28,7 @@ public class BattleEvents implements Interface {
         }
     }
 
-    public static boolean Battle(Hero hero, ArrayList<Enemy> enemyArrayList){
+    public static boolean Battle(Hero hero, ArrayList<Enemy> enemyArrayList) {
         Enemy enemy = enemyArrayList.get(0);
         while (hero.isAlive()) {
             if (enemyArrayList.isEmpty()){
@@ -42,7 +42,7 @@ public class BattleEvents implements Interface {
             }
             if (control == 1) {
                 AttackAction.HeroAttack(hero, enemy, enemyArrayList);
-                if (!checkIsEnemyAlive.checkIsEAlive(enemyArrayList) && !enemyArrayList.isEmpty()){
+                if (!checkIsEnemyAlive.checkIsEAlive(enemyArrayList) && !enemyArrayList.isEmpty()) {
                     enemy = choseEnemyFromArray.takeEnemyFromArray(enemyArrayList, enemy);
                 }
                 AttackAction.EnemyAttack(hero, enemyArrayList);
@@ -59,7 +59,7 @@ public class BattleEvents implements Interface {
     }
 
     public static boolean fightRoom(Hero hero, ArrayList<Enemy> enemyArrayList) {
-        System.out.println("Герой наткнувся на комнату з ");
+        System.out.println("\n" + hero.getName() + " наткнувся на комнату з: ");
         enemyArrayList = generatorOfEnemies(enemyArrayList);
         return Battle(hero, enemyArrayList);
     }
@@ -83,17 +83,16 @@ public class BattleEvents implements Interface {
         return enemyArrayList;
     }
 
-    public static void restRoom(Hero hero){
-        System.out.println("Йдучи уперед " + hero.getName() + " побачив кімнату, у якій немає ворогів, тут можна трохи відпочити.");
+    public static void restRoom(Hero hero) {
+        System.out.println("\nЙдучи уперед " + hero.getName() + " побачив кімнату, у якій немає ворогів, тут можна трохи відпочити.");
         Interface.getRestRoomInterface();
-        while (true){
+        while (true) {
             control = scan.nextInt();
             if (control == 1) {
                 restAction.rest(hero);
                 break;
             } else if (control == 2){
                 Interface.getInfo(hero);
-                break;
             } else if (control == 0){
                 System.out.println("Вихід");
                 break;

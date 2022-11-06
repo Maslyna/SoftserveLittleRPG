@@ -13,7 +13,7 @@ public class choseEnemyFromArray {
         return enemyArrayList.get(i);
     }
 
-    public static Enemy takeEnemyFromArray(ArrayList<Enemy> enemyArrayList, Enemy enemy){
+    public static Enemy takeEnemyFromArray(ArrayList<Enemy> enemyArrayList, Enemy enemy) {
         if (enemyArrayList.size() != 1){
             System.out.println("Оберіть супротивника від 1 до " + enemyArrayList.size() + "\n");
             numberOfEnemy = scan.nextInt() - 1;

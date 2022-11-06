@@ -10,8 +10,7 @@ public interface Interface {
                 [1] - Атакувати ворога             [2] - Інформація про героя
                 [3] - Інформація про ворога/гів    [4] - Обрати ворога для побиття
                 [0] - Вихід
-                Enter:
-                """
+                Enter:"""
         );
     }
     static void getInfo(Hero hero){
@@ -24,9 +23,7 @@ public interface Interface {
         System.out.println("""
                 [1] - Відпочити
                 [2] - Інформація про героя
-                [0] - Exit
-                
-                """);
+                [0] - Exit""");
 
     }
 
@@ -35,8 +32,7 @@ public interface Interface {
                                  Який клас ви хочете обрати?
                            [1] - Воїн   [2] - Лучник   [3] - Маг
                            [0] - Вихід
-                           Enter:
-                           """);
+                           Enter:""");
     }
 
 }
