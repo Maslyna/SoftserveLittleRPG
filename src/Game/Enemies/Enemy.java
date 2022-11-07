@@ -3,11 +3,11 @@ import Game.Heroes.Hero;
 import Game.Mortal;
 
 public abstract class Enemy implements Mortal {
-
     String name;
     double HP, maxHP;
     double attack;
     int KD;
+    int LVL;
 
     public String getName() {
         return name;
@@ -18,16 +18,23 @@ public abstract class Enemy implements Mortal {
     }
 
     public void infoAboutEnemy() {
-        System.out.println("Ім'я: " + getName() + "\nHP: " + getHP() + "/" + maxHP + "\nAttack: " + getAttack() + "\nKD: " + KD + "\n");
+        System.out.println("Ім'я: " + getName() + "\nРівень: " + getLVL() + "\nHP: " + getHP() + "/" + maxHP + "\nAttack: " + getAttack() + "\nKD: " + KD + "\n");
     }
 
-    public Enemy(String name, double HP, double attack, int KD) {
+    public Enemy(String name, double HP, double attack, int KD, int LVL) {
         this.name = name;
-        this.HP = HP;
-        this.attack = attack;
+        this.HP = HP * LVL;
+        this.attack = attack * LVL;
         this.KD = KD;
-        maxHP = HP;
+        this.LVL = LVL;
+        maxHP = this.HP;
     }
+
+
+    public int getLVL() {
+        return LVL;
+    }
+
 
     public void takeDamage(double damage) {
         setHP(getHP() - damage);

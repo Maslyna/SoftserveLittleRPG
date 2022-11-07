@@ -9,12 +9,12 @@ public class Zombie extends Enemy {
 
     static Random random = new Random();
 
-    public Zombie(double HP, double attack, int KD) {
-        super("Zombie", HP, attack, KD);
+    public Zombie(double HP, double attack, int KD, int LVL) {
+        super("Zombie", HP, attack, KD, LVL);
     }
 
-    public Zombie() {
-        super("Zombie", 5, 1, 8);
+    public Zombie(int LVL) {
+        super("Zombie", 5, 1, 8, LVL);
     }
 
     private boolean zombieAlive() {

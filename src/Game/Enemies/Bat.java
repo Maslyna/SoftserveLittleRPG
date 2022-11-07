@@ -4,12 +4,12 @@ import Game.Heroes.Hero;
 
 public class Bat extends Enemy{
 
-    public Bat(double HP, double attack, int KD) {
-        super("Bat", HP, attack, KD);
+    public Bat(double HP, double attack, int KD, int LVL) {
+        super("Bat", HP, attack, KD, LVL);
     }
 
-    public Bat(){
-        super("Bat", 5, 0.5, 10);
+    public Bat(int LVL){
+        super("Bat", 5, 0.5, 10, LVL);
     }
 
     @Override

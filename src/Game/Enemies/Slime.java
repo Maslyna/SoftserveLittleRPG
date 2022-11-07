@@ -1,12 +1,12 @@
 package Game.Enemies;
 
 public class Slime extends Enemy {
-    public Slime(double HP, double attack, int KD) {
-        super("Slime", HP, attack, KD);
+    public Slime(double HP, double attack, int KD, int LVL) {
+        super("Slime", HP, attack, KD, LVL);
     }
 
-    public Slime() {
-        super("Slime", 10, 0.5, 5);
+    public Slime(int LVL) {
+        super("Slime", 10, 0.5, 5, LVL);
     }
 
     @Override

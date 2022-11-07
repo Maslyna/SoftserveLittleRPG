@@ -58,9 +58,9 @@ public class TrainingGround implements Interface {
         ArrayList<Enemy> enemyArrayList = new ArrayList<Enemy>();
         //enemyArrayList = BattleEvents.generatorOfEnemies(enemyArrayList);
         //System.out.println("Size of array list " + enemyArrayList.size());
-        Enemy zombie1 = new Zombie();
-        Enemy zombie2 = new Zombie();
-        Enemy zombie3 = new Zombie();
+        Enemy zombie1 = new Zombie(2);
+        Enemy zombie2 = new Zombie(3);
+        Enemy zombie3 = new Zombie(1);
         enemyArrayList.add(zombie1);
         enemyArrayList.add(zombie2);
         enemyArrayList.add(zombie3);
