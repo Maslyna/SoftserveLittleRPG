@@ -19,7 +19,7 @@ public class BattleGround extends BattleEvents {
 
     public static void Start() {
         Interface.getStartScreen();
-        Hero hero;
+        Hero hero = null;
         ArrayList <Enemy> enemyArrayList = new ArrayList<Enemy>();
         while (true){
             int chose = scanner.nextInt();
@@ -41,9 +41,13 @@ public class BattleGround extends BattleEvents {
                 String name = scanner.next();
                 hero = new Mage("Mage", name, 10, 5, 20, 10);
                 break;
+            } else if (chose == 0){
+                System.out.println("Вихід...");
+                break;
             }
         }
-        Game(hero, enemyArrayList);
+        if (hero != null)
+            Game(hero, enemyArrayList);
     }
 
     public static void Game(Hero hero, ArrayList<Enemy> enemyArrayList){

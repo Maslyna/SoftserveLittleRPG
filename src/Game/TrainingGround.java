@@ -18,7 +18,7 @@ public class TrainingGround implements Interface {
 
         Enemy enemy = enemyArrayList.get(0);
         while (hero.isAlive()) {
-            if (enemyArrayList.isEmpty()){
+            if (enemyArrayList.isEmpty()  && checkIsEnemyAlive.checkIsEAlive(enemyArrayList)){
                 System.out.println("Перемога!");
                 break;
             }
@@ -54,7 +54,7 @@ public class TrainingGround implements Interface {
     public static void main(String[] args) {
         //Hero hero = new Archer("Archer", "Alpha", 10, 2, 5, 10);
         //Hero hero = new Mage("Mage", "Alpha", 10, 5, 5, 10);
-        Hero hero = new Warrior("Warrior", "Alpha", 10, 10, 10, 10);
+        Hero hero = new Warrior("Warrior", "Alpha", 10, 2, 10, 10);
         ArrayList<Enemy> enemyArrayList = new ArrayList<Enemy>();
         //enemyArrayList = BattleEvents.generatorOfEnemies(enemyArrayList);
         //System.out.println("Size of array list " + enemyArrayList.size());
@@ -64,6 +64,7 @@ public class TrainingGround implements Interface {
         enemyArrayList.add(zombie1);
         enemyArrayList.add(zombie2);
         enemyArrayList.add(zombie3);
+        hero.upExp(20);
         Training(hero, enemyArrayList);
     }
 }

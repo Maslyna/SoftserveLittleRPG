@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public abstract class Hero implements Mortal {
     String name;
     String ClassName;
+    ArrayList<String> Inventory = new ArrayList<>(); //TODO
+    int LVL;
+    private int Exp, ExpLimite; //TODO
     double HP, maxHP;
     double attack;
     double mana, maxMana;
@@ -22,6 +25,40 @@ public abstract class Hero implements Mortal {
         this.KD = KD;
         maxHP = HP;
         maxMana = mana;
+        LVL = 1; Exp = 0; ExpLimite = 10;
+    }
+
+    public int getLVL() {
+        return LVL;
+    }
+
+    public void setLVL(int LVL) {
+        this.LVL = LVL;
+    }
+
+    public void lvlUP () {
+        System.out.println(getName() + " отримав новий рівень: " + (getLVL() + 1));
+        setLVL(getLVL() + 1);
+        attack *= LVL;
+        maxHP *= LVL;
+        maxMana *= LVL;
+        ExpLimite *= 2;
+    }
+
+    public int getExp() {
+        return Exp;
+    }
+
+    public void upExp(int Exp) {
+        this.Exp += Exp;
+        System.out.println(getName() + " отримав: " + Exp + " EXP!");
+        while (true){
+            if (this.Exp >= ExpLimite)
+                lvlUP();
+            else
+                break;
+        }
+
     }
 
     public String getClassName() {
@@ -39,8 +76,10 @@ public abstract class Hero implements Mortal {
     abstract void attackAreaEnemies(ArrayList<Enemy> enemyArrayList, double damage);
 
     public void infoAboutHero() {
-        System.out.println("Класс: " + getClassName() +"\nІм'я: " + getName() +
-                "\nHP: " + getHP() + "/" + maxHP + "\nMP: " + getMana() + "/" + maxMana + "\nAttack: " + getAttack() + "\nKD: " + KD);
+        System.out.println("Класс: " + getClassName() +"\nІм'я: " + getName()
+                + "\nРівень: " + getLVL() + "\t\t\tEXP: " + getExp() + "/" + ExpLimite  +
+                "\nHP: " + getHP() + "/" + getMaxHP() + "\t\tMP: " + getMana() + "/" + getMaxMana()
+                + "\nAttack: " + getAttack() + "\t\tKD: " + KD);
     }
 
     public void setHP(double HP) {
@@ -68,6 +107,18 @@ public abstract class Hero implements Mortal {
     }
 
     public abstract void getSpellName();
+
+    public ArrayList<String> getInventory() {
+        return Inventory;
+    }
+
+    public double getMaxHP() {
+        return maxHP;
+    }
+
+    public double getMaxMana() {
+        return maxMana;
+    }
 
     @Override
     public boolean isAlive() {

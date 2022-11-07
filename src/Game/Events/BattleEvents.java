@@ -29,6 +29,7 @@ public class BattleEvents implements Interface {
     }
 
     public static boolean Battle(Hero hero, ArrayList<Enemy> enemyArrayList) {
+        int exp = enemyArrayList.size();
         Enemy enemy = enemyArrayList.get(0);
         while (hero.isAlive()) {
             if (enemyArrayList.isEmpty()){
@@ -55,6 +56,8 @@ public class BattleEvents implements Interface {
                 break;
             }
         }
+        if (enemyArrayList.isEmpty())
+            hero.upExp(exp);
         return hero.isAlive();
     }
 
@@ -65,6 +68,7 @@ public class BattleEvents implements Interface {
     }
 
     public static ArrayList<Enemy> generatorOfEnemies(ArrayList<Enemy> enemyArrayList){
+        enemyArrayList.clear();
         int randInt = random.nextInt(4) + 1;
         System.out.print((randInt) + " ворогами");
         for (;randInt > 0; randInt--) {
