@@ -20,7 +20,7 @@ public class BattleGround extends BattleEvents {
     public static void Start() {
         Interface.getStartScreen();
         Hero hero = null;
-        ArrayList <Enemy> enemyArrayList = new ArrayList<Enemy>();
+        ArrayList <Enemy> enemyArrayList = new ArrayList<>();
         while (true){
             int chose = scanner.nextInt();
             if (chose == 1){

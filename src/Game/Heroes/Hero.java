@@ -10,7 +10,7 @@ public abstract class Hero implements Mortal {
     String ClassName;
     ArrayList<String> Inventory = new ArrayList<>(); //TODO
     int LVL;
-    private int Exp, ExpLimite; //TODO
+    int Exp, ExpLimite; //TODO
     double HP, maxHP;
     double attack;
     double mana, maxMana;

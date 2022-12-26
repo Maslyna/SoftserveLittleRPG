@@ -100,7 +100,7 @@ public class BattleEvents implements Interface {
     public static boolean fightRoom(Hero hero, ArrayList<Enemy> enemyArrayList) {
         System.out.println("\nНомер кімнати: " + NumberOfRoom);
         System.out.println("\n" + hero.getName() + " наткнувся на комнату з: ");
-        enemyArrayList = generatorOfEnemies(enemyArrayList);
+        generatorOfEnemies(enemyArrayList);
         return Battle(hero, enemyArrayList);
     }
 
